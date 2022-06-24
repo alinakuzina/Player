@@ -17,18 +17,15 @@ const Player = function (props) {
     ctx.currentListSongs[ctx.currnetSongIndex];
   let audio = useMemo(() => new Audio(musicSrc), [musicSrc]);
 
-  useEffect(() => {
-    if (autoplay) {
-      audio.play();
-      ctx.isPlayingHandler();
-    }
-  }, [musicSrc]);
+  console.log("player");
 
   const onLoadedMetadata = () => {
-    if (audioPlayer.current) {
+    if (audioPlayer.current && autoplay) {
       const minutes = Math.floor(audioPlayer.current.duration / 60);
       const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
       setDuration(`${minutes}:${seconds}`);
+      audio.play();
+      ctx.isPlayingHandler();
     }
   };
 
@@ -54,6 +51,14 @@ const Player = function (props) {
     setAutoplay(true);
   };
 
+  const changeCurrentTimeHandler = () => {
+    console.log("hello");
+  };
+
+  const clickProgress = () => {
+    audioPlayer.current.currentTime = 1500;
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.player}>
@@ -71,9 +76,10 @@ const Player = function (props) {
           className={classes.audio}
           ref={audioPlayer}
           onLoadedMetadata={onLoadedMetadata}
+          onTimeUpdate={changeCurrentTimeHandler}
         ></audio>
         {/* <!-- Progress --> */}
-        <div className={classes.progress}>
+        <div className={classes.progress} onClick={clickProgress}>
           <div className={classes.progressLine}></div>
           <div className={classes.durationContainer}>
             <span className={classes.current}>0:00</span>
