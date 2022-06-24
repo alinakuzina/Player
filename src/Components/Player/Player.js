@@ -26,20 +26,11 @@ const Player = function (props) {
 
   const onLoadedMetadata = () => {
     if (audioPlayer.current) {
-      console.log(audioPlayer.current);
       const minutes = Math.floor(audioPlayer.current.duration / 60);
       const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
-      console.log(`${minutes}:${seconds}`);
       setDuration(`${minutes}:${seconds}`);
     }
   };
-
-  useEffect(() => {
-    const minutes = Math.floor(audioPlayer.current.duration / 60);
-    const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
-    console.log(`${minutes}:${seconds}`);
-    setDuration(`${minutes}:${seconds}`);
-  }, [audio?.current?.readyState]);
 
   const playHandler = function () {
     audio.play();
