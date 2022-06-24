@@ -20,12 +20,14 @@ const Player = function (props) {
   console.log("player");
 
   const onLoadedMetadata = () => {
-    if (audioPlayer.current && autoplay) {
+    if (audioPlayer.current) {
       const minutes = Math.floor(audioPlayer.current.duration / 60);
       const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
       setDuration(`${minutes}:${seconds}`);
-      audio.play();
-      ctx.isPlayingHandler();
+      if (autoplay) {
+        audio.play();
+        ctx.isPlayingHandler();
+      }
     }
   };
 
