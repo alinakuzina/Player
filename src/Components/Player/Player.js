@@ -22,11 +22,17 @@ const Player = function (props) {
       audio.play();
       ctx.isPlayingHandler();
     }
-    // const minutes = Math.floor(audioPlayer.current.duration / 60);
-    // const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
-    // console.log(`${minutes}:${seconds}`);
-    // if (audioPlayer) setDuration(`${minutes}:${seconds}`);
   }, [musicSrc]);
+
+  const onLoadedMetadata = () => {
+    if (audioPlayer.current) {
+      console.log(audioPlayer.current);
+      const minutes = Math.floor(audioPlayer.current.duration / 60);
+      const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
+      console.log(`${minutes}:${seconds}`);
+      setDuration(`${minutes}:${seconds}`);
+    }
+  };
 
   useEffect(() => {
     const minutes = Math.floor(audioPlayer.current.duration / 60);
@@ -73,6 +79,7 @@ const Player = function (props) {
           src={musicSrc}
           className={classes.audio}
           ref={audioPlayer}
+          onLoadedMetadata={onLoadedMetadata}
         ></audio>
         {/* <!-- Progress --> */}
         <div className={classes.progress}>
