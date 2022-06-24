@@ -13,7 +13,9 @@ const Player = function (props) {
   const [autoplay, setAutoplay] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState("0:00");
+  const [progress, setProgress] = useState("0");
   let audioPlayer = useRef();
+  let progressRef = useRef();
   let { title, artist, musicSrc, imgSrc } =
     ctx.currentListSongs[ctx.currnetSongIndex];
   let audio = useMemo(() => new Audio(musicSrc), [musicSrc]);
@@ -40,6 +42,9 @@ const Player = function (props) {
             ? setCurrentTime(`${min}:0${sec}`)
             : setCurrentTime(`${min}:${sec}`);
         }
+
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        setProgress(`${progressPercent}%`);
       });
 
       audio.addEventListener("ended", () => {
@@ -55,7 +60,7 @@ const Player = function (props) {
 
   const pauseHandler = function () {
     audio.pause();
-    ctx.isPlayingHandler();
+    ctx.isPousedHandler();
   };
 
   const prevSongHandler = () => {
@@ -70,12 +75,11 @@ const Player = function (props) {
     setAutoplay(true);
   };
 
-  const changeCurrentTimeHandler = () => {
-    console.log(audio.currentTime);
-  };
-
-  const clickProgress = () => {
-    console.log(audio.currentTime);
+  const clickProgress = (e) => {
+    const width = progressRef.current.clientWidth;
+    const clickX = e.nativeEvent.offsetX;
+    audio.currentTime = (clickX / width) * audio.duration;
+    playHandler();
   };
 
   return (
@@ -95,11 +99,17 @@ const Player = function (props) {
           className={classes.audio}
           ref={audioPlayer}
           onLoadedMetadata={onLoadedMetadata}
-          onTimeUpdate={changeCurrentTimeHandler}
         ></audio>
         {/* <!-- Progress --> */}
-        <div className={classes.progress} onClick={clickProgress}>
-          <div className={classes.progressLine}></div>
+        <div
+          className={classes.progress}
+          onClick={clickProgress}
+          ref={progressRef}
+        >
+          <div
+            className={classes.progressLine}
+            style={{ width: progress }}
+          ></div>
           <div className={classes.durationContainer}>
             <span className={classes.current}>{currentTime}</span>
             <span className={classes.duration}>{duration}</span>

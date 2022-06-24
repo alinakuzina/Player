@@ -58,7 +58,11 @@ export const SongsContentProvider = (props) => {
   };
 
   const isPlayingHandler = () => {
-    setIsPlaying((prev) => !prev);
+    setIsPlaying(true);
+  };
+
+  const isPousedHandler = () => {
+    setIsPlaying(false);
   };
 
   const nextSongHandler = () => {
@@ -91,6 +95,7 @@ export const SongsContentProvider = (props) => {
         prevSong: prevSongHandler,
         isPlaying: isPlaying,
         isPlayingHandler: isPlayingHandler,
+        isPousedHandler: isPousedHandler,
       }}
     >
       {props.children}
