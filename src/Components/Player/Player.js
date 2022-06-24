@@ -12,12 +12,11 @@ const Player = function (props) {
   const ctx = useContext(SongsContext);
   const [autoplay, setAutoplay] = useState(false);
   const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState("0:00");
   let audioPlayer = useRef();
   let { title, artist, musicSrc, imgSrc } =
     ctx.currentListSongs[ctx.currnetSongIndex];
   let audio = useMemo(() => new Audio(musicSrc), [musicSrc]);
-
-  console.log("player");
 
   const onLoadedMetadata = () => {
     if (audioPlayer.current) {
@@ -28,6 +27,24 @@ const Player = function (props) {
         audio.play();
         ctx.isPlayingHandler();
       }
+
+      audio.addEventListener("timeupdate", (e) => {
+        if (audio.currentTime < 60) {
+          audio.currentTime < 10
+            ? setCurrentTime(`0:0${Math.floor(audio.currentTime)}`)
+            : setCurrentTime(`0:${Math.floor(audio.currentTime)}`);
+        } else {
+          const min = Math.floor(audio.currentTime / 60);
+          const sec = Math.floor(audio.currentTime - minutes * 60);
+          sec < 10
+            ? setCurrentTime(`${min}:0${sec}`)
+            : setCurrentTime(`${min}:${sec}`);
+        }
+      });
+
+      audio.addEventListener("ended", () => {
+        nextSongHandler();
+      });
     }
   };
 
@@ -54,11 +71,11 @@ const Player = function (props) {
   };
 
   const changeCurrentTimeHandler = () => {
-    console.log("hello");
+    console.log(audio.currentTime);
   };
 
   const clickProgress = () => {
-    audioPlayer.current.currentTime = 1500;
+    console.log(audio.currentTime);
   };
 
   return (
@@ -84,7 +101,7 @@ const Player = function (props) {
         <div className={classes.progress} onClick={clickProgress}>
           <div className={classes.progressLine}></div>
           <div className={classes.durationContainer}>
-            <span className={classes.current}>0:00</span>
+            <span className={classes.current}>{currentTime}</span>
             <span className={classes.duration}>{duration}</span>
           </div>
         </div>
