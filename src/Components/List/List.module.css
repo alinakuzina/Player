@@ -1,0 +1,6 @@
+.container {
+  grid-area: 3 / 1 / 6 / 4;
+  height: 100%;
+  width: 100%;
+  background-color: #f2f3fa;
+}

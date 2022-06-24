@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.input {
+  background: #f8f9fd;
+  border: none;
+  height: 1rem;
+  width: 40%;
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.8s;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+}
+
+.container:hover > .input {
+  width: 80%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.icon {
+  color: #5f6174;
+}
+
+.searchButton {
+  border: none;
+  background: transparent;
+  margin-left: -2.5rem;
+  cursor: pointer;
+}
