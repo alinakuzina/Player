@@ -18,6 +18,7 @@ export const SongsContentProvider = (props) => {
   const [playList, setPlayList] = useState([]);
   const [currnetSongIndex, setCurrnetSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState();
 
   const ApiCurrentSongsHandler = (url, setArr) => {
     let songs = [];
@@ -51,6 +52,10 @@ export const SongsContentProvider = (props) => {
       .catch(console.log("Please reload the page. Server don`t answer. "));
   };
 
+  const audioHandler = (audio) => {
+    setCurrentAudio(audio);
+  };
+
   const currentSongsHandler = (url) => {
     ApiCurrentSongsHandler(url, setCurrentSongs);
   };
@@ -68,10 +73,11 @@ export const SongsContentProvider = (props) => {
   };
 
   const nextSongHandler = () => {
+    console.log(currnetSongIndex);
     if (currnetSongIndex === currentSongs.lenth - 1) {
       setCurrnetSongIndex(0);
     } else {
-      setCurrnetSongIndex(currnetSongIndex + 1);
+      setCurrnetSongIndex(Number(currnetSongIndex) + 1);
     }
     setIsPlaying(false);
   };
@@ -80,9 +86,15 @@ export const SongsContentProvider = (props) => {
     if (currnetSongIndex === 0) {
       setCurrnetSongIndex(currentSongs.length - 1);
     } else {
-      setCurrnetSongIndex(currnetSongIndex - 1);
+      setCurrnetSongIndex(Number(currnetSongIndex) - 1);
     }
     setIsPlaying(false);
+  };
+
+  const changeIndexHandler = (index) => {
+    console.log(index);
+    currentAudio.pause();
+    setCurrnetSongIndex(index);
   };
 
   return (
@@ -98,6 +110,9 @@ export const SongsContentProvider = (props) => {
         isPlaying: isPlaying,
         isPlayingHandler: isPlayingHandler,
         isPousedHandler: isPousedHandler,
+        changeIndex: changeIndexHandler,
+        currentAudio: currentAudio,
+        newAudioHandler: audioHandler,
       }}
     >
       {props.children}

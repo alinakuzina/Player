@@ -5,6 +5,7 @@
   background-color: #f2f3fa;
   border-radius: 10px;
   padding: 0.5rem 0.7rem;
+  cursor: pointer;
 }
 
 .playing {

@@ -16,6 +16,7 @@ const Player = function (props) {
   const [progress, setProgress] = useState("0");
   let audioPlayer = useRef();
   let progressRef = useRef();
+
   let { title, artist, musicSrc, imgSrc } =
     ctx.currentListSongs[ctx.currnetSongIndex];
   let audio = useMemo(() => new Audio(musicSrc), [musicSrc]);
@@ -25,6 +26,8 @@ const Player = function (props) {
       const minutes = Math.floor(audioPlayer.current.duration / 60);
       const seconds = Math.floor(audioPlayer.current.duration - minutes * 60);
       setDuration(`${minutes}:${seconds}`);
+      ctx.newAudioHandler(audio);
+
       if (autoplay) {
         audio.play();
         ctx.isPlayingHandler();
@@ -49,6 +52,7 @@ const Player = function (props) {
 
       audio.addEventListener("ended", () => {
         nextSongHandler();
+        console.log("data handle");
       });
     }
   };

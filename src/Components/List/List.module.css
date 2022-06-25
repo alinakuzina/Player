@@ -31,4 +31,8 @@
   .container {
     height: 65%;
   }
+  .title {
+    color: #26272e;
+    font-size: 1.2rem;
+  }
 }
