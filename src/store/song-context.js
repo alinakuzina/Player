@@ -73,8 +73,7 @@ export const SongsContentProvider = (props) => {
   };
 
   const nextSongHandler = () => {
-    console.log(currnetSongIndex);
-    if (currnetSongIndex === currentSongs.lenth - 1) {
+    if (Number(currnetSongIndex) === currentSongs.length - 1) {
       setCurrnetSongIndex(0);
     } else {
       setCurrnetSongIndex(Number(currnetSongIndex) + 1);
@@ -83,7 +82,7 @@ export const SongsContentProvider = (props) => {
   };
 
   const prevSongHandler = () => {
-    if (currnetSongIndex === 0) {
+    if (Number(currnetSongIndex) === 0) {
       setCurrnetSongIndex(currentSongs.length - 1);
     } else {
       setCurrnetSongIndex(Number(currnetSongIndex) - 1);
@@ -92,7 +91,6 @@ export const SongsContentProvider = (props) => {
   };
 
   const changeIndexHandler = (index) => {
-    console.log(index);
     currentAudio.pause();
     setCurrnetSongIndex(index);
   };

@@ -1,18 +1,25 @@
 import React from "react";
 import classes from "./ListItem.module.css";
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useState } from "react";
 import SongsContext from "../../store/song-context";
 
 const ListItem = (props) => {
   const ctx = useContext(SongsContext);
   const scrollEl = useRef();
   const notScrollEl = useRef();
+  const [active, setAcrive] = useState();
 
   let rufOfEl = ctx.currnetSongIndex === props.id ? scrollEl : notScrollEl;
 
   if (scrollEl.current) {
     scrollEl.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  //   let cuttentAcive =()=>{
+  //    return ctx.currnetSongIndex === props.id ? classes.playing : classes.container
+  //   }
+
+  //   let fin
 
   return (
     <div
