@@ -33,15 +33,17 @@ export const SongsContentProvider = (props) => {
     fetch(url, options)
       .then((response) => response.json())
       .then((response) => {
+        let number = 0;
         for (let i = 0; i < response.tracks.data.length; i++) {
           if (response.tracks.data[i].preview) {
             songs.push({
-              id: i,
+              id: number,
               title: response.tracks.data[i].title,
               artist: response.tracks.data[i].artist.name,
               musicSrc: response.tracks.data[i].preview,
               imgSrc: response.tracks.data[i].album.cover_big,
             });
+            number += 1;
           }
         }
         setArr(songs);

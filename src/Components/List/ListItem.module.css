@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: #f2f3fa;
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+}
+
+.playing {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: #ebedf8;
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #001dd8;
+  transform: scale(0.99);
+  box-shadow: 1px 1px 2px 2px #3b3b3b71;
+}
+
+.img {
+  height: 5vh;
+  border-radius: 10px;
+}
+
+.details {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.artist {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
