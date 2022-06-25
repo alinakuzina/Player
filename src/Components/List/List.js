@@ -10,7 +10,7 @@ const List = function (props) {
 
   const setNewTrack = (e) => {
     ctx.isPousedHandler();
-    ctx.changeIndex(e.target.id);
+    ctx.changeIndex(Number(e.target.id));
   };
 
   const songsList = currentListSongs.map((song) => {

@@ -73,19 +73,19 @@ export const SongsContentProvider = (props) => {
   };
 
   const nextSongHandler = () => {
-    if (Number(currnetSongIndex) === currentSongs.length - 1) {
+    if (currnetSongIndex === currentSongs.length - 1) {
       setCurrnetSongIndex(0);
     } else {
-      setCurrnetSongIndex(Number(currnetSongIndex) + 1);
+      setCurrnetSongIndex(currnetSongIndex + 1);
     }
     setIsPlaying(false);
   };
 
   const prevSongHandler = () => {
-    if (Number(currnetSongIndex) === 0) {
+    if (currnetSongIndex === 0) {
       setCurrnetSongIndex(currentSongs.length - 1);
     } else {
-      setCurrnetSongIndex(Number(currnetSongIndex) - 1);
+      setCurrnetSongIndex(currnetSongIndex - 1);
     }
     setIsPlaying(false);
   };
