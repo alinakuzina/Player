@@ -15,12 +15,6 @@ const ListItem = (props) => {
     scrollEl.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  //   let cuttentAcive =()=>{
-  //    return ctx.currnetSongIndex === props.id ? classes.playing : classes.container
-  //   }
-
-  //   let fin
-
   return (
     <div
       className={

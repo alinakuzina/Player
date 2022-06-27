@@ -11,7 +11,9 @@
 
 .title {
   color: #26272e;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  position: fixed;
+  margin-top: -3rem;
 }
 
 .list {

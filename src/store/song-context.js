@@ -20,9 +20,12 @@ export const SongsContentProvider = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentAudio, setCurrentAudio] = useState();
 
-  const ApiCurrentSongsHandler = (url, setArr) => {
+  const ApiCurrentSongsHandler = (url) => {
     let songs = [];
-
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    setIsPlaying(false);
     const options = {
       method: "GET",
       headers: {
@@ -35,9 +38,11 @@ export const SongsContentProvider = (props) => {
       .then((response) => response.json())
       .then((response) => {
         let number = 0;
+        console.log(response);
         for (let i = 0; i < response.tracks.data.length; i++) {
           if (response.tracks.data[i].preview) {
             songs.push({
+              playlist: response.title,
               id: number,
               title: response.tracks.data[i].title,
               artist: response.tracks.data[i].artist.name,
@@ -47,9 +52,50 @@ export const SongsContentProvider = (props) => {
             number += 1;
           }
         }
-        setArr(songs);
+        setCurrentSongs(songs);
+        setCurrnetSongIndex(0);
       })
       .catch(console.log("Please reload the page. Server don`t answer. "));
+  };
+
+  const ApiSearchhandler = (url, searchText) => {
+    let songs = [];
+    // if (currentAudio) {
+    //   currentAudio.pause();
+    // }
+    // setIsPlaying(false);
+    // const options = {
+    //   method: "GET",
+    //   headers: {
+    //     "X-RapidAPI-Key": "bf55e94a67mshb9ff325d6bed36cp1524a0jsn2c8815085b6e",
+    //     "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+    //   },
+    // };
+
+    // fetch(url, options)
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     let number = 0;
+    //     console.log(response);
+
+    //     console.log("playlist");
+    //     for (let i = 0; i < response.tracks.data.length; i++) {
+    //       if (response.tracks.data[i].preview) {
+    //         songs.push({
+    //           playlist: searchText,
+    //           id: number,
+    //           title: response.tracks.data[i].title,
+    //           artist: response.tracks.data[i].artist.name,
+    //           musicSrc: response.tracks.data[i].preview,
+    //           imgSrc: response.tracks.data[i].album.cover_big,
+    //         });
+    //         number += 1;
+    //       }
+    //     }
+    //     setCurrentSongs(songs);
+    //     setCurrnetSongIndex(0);
+    //   })
+    //   .catch(console.log("Please reload the page. Server don`t answer. "));
   };
 
   const audioHandler = (audio) => {
@@ -111,6 +157,7 @@ export const SongsContentProvider = (props) => {
         changeIndex: changeIndexHandler,
         currentAudio: currentAudio,
         newAudioHandler: audioHandler,
+        apiSearch: ApiSearchhandler,
       }}
     >
       {props.children}

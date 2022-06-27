@@ -29,7 +29,7 @@ const List = function (props) {
   return (
     <div className={classes.container}>
       <div className={classes.title}>
-        <span>Current playlist</span>
+        <span>{currentListSongs[0].playlist}</span>
       </div>
       <ul className={classes.list}>{songsList}</ul>
     </div>

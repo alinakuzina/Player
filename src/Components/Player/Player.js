@@ -60,6 +60,7 @@ const Player = function (props) {
   const playHandler = function () {
     audio.play();
     ctx.isPlayingHandler();
+    setAutoplay(true);
   };
 
   const pauseHandler = function () {
