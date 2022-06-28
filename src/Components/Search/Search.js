@@ -20,19 +20,21 @@ const Search = function (props) {
     );
     query.current.value = "";
   };
-
+  console.log(ctx.ifError);
   return (
-    <form className={classes.container} onSubmit={searchHandler}>
-      <input
-        ref={query}
-        type="text"
-        className={classes.input}
-        placeholder="Eminem ..."
-      ></input>
-      <button className={classes.searchButton} onClick={searchHandler}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} className={classes.icon} />
-      </button>
-    </form>
+    <React.Fragment>
+      <form className={classes.container} onSubmit={searchHandler}>
+        <input
+          ref={query}
+          type="text"
+          className={classes.input}
+          placeholder="Eminem ..."
+        ></input>
+        <button className={classes.searchButton} onClick={searchHandler}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} className={classes.icon} />
+        </button>
+      </form>
+    </React.Fragment>
   );
 };
 

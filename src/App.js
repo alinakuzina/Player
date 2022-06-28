@@ -12,7 +12,8 @@ function App() {
   let SongsCtx = useContext(SongsContext);
   useEffect(() => {
     SongsCtx.setCurrentSongs(
-      "https://deezerdevs-deezer.p.rapidapi.com/playlist/1629677515"
+      "https://deezerdevs-deezer.p.rapidapi.com/playlist/1629677515",
+      "playlist"
     );
   }, []);
 
