@@ -1,6 +1,6 @@
 .container {
   grid-area: 2 / 1 / 3 / 7;
-  height: 25vh;
+  height: 21vh;
   width: 100%;
   display: flex;
   justify-content: center;

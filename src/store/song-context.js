@@ -96,8 +96,12 @@ export const SongsContentProvider = (props) => {
         }
         setCurrentSongs(songs);
         setCurrnetSongIndex(0);
+        setError(false);
       })
-      .catch(console.log("Please reload the page. Server don`t answer. "));
+      .catch((error) => {
+        setError(true);
+        console.log(error.message);
+      });
   };
 
   const audioHandler = (audio) => {

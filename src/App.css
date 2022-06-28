@@ -26,3 +26,18 @@
   padding: 2rem;
   color: #4c4e5d;
 }
+
+.small-error {
+  grid-area: 3 / 1/ 7 / 7;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.error-text {
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  color: rgb(139, 8, 8);
+}

@@ -19,16 +19,25 @@ function App() {
 
   return (
     <div className="App">
-      {!SongsCtx.currentListSongs[0] && (
+      {/* {!SongsCtx.currentListSongs[0] && (
         <div className="error">
           Please reload the page in 2 minutes. The number of requests to the
           site has been exceeded.
         </div>
-      )}
+      )} */}
+
       {SongsCtx.currentListSongs[0] && <Header />}
       {SongsCtx.currentListSongs[0] && <Preview />}
-      {SongsCtx.currentListSongs[0] && <List />}
-      {SongsCtx.currentListSongs[0] && <Player />}
+      {SongsCtx.ifError && (
+        <div className="small-error">
+          <div className="error-text">
+            Please try one more time. The number of requests to the site has
+            been exceeded.
+          </div>
+        </div>
+      )}
+      {SongsCtx.currentListSongs[0] && !SongsCtx.ifError && <List />}
+      {SongsCtx.currentListSongs[0] && !SongsCtx.ifError && <Player />}
     </div>
   );
 }
