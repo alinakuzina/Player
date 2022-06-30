@@ -39,7 +39,7 @@ const Preview = function (props) {
       setCurrentScrollPosition(newWidth);
       scrollbar.current.scrollLeft = newWidth;
     } else {
-      let newWidth = currentScrollPosition + 120;
+      let newWidth = currentScrollPosition + 80;
       setCurrentScrollPosition(newWidth);
       scrollbar.current.scrollLeft = newWidth;
     }
@@ -52,7 +52,7 @@ const Preview = function (props) {
       setCurrentScrollPosition(newWidth);
       scrollbar.current.scrollLeft = newWidth;
     } else {
-      let newWidth = currentScrollPosition - 120;
+      let newWidth = currentScrollPosition - 80;
       setCurrentScrollPosition(newWidth);
       scrollbar.current.scrollLeft = newWidth;
     }

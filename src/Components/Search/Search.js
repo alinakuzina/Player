@@ -20,7 +20,6 @@ const Search = function (props) {
     );
     query.current.value = "";
   };
-  console.log(ctx.ifError);
   return (
     <form className={classes.container} onSubmit={searchHandler}>
       <input
