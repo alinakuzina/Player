@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import classes from "./Previews.module.css";
 import deepHous from "./images/deepHouse.jpeg";
 import feelGood from "./images/FeelGood.jpeg";
@@ -19,7 +19,9 @@ import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import SongsContext from "../../store/song-context";
 
 const Preview = function (props) {
+  const scrollbar = useRef();
   const ctx = useContext(SongsContext);
+  const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
 
   const playlistHandler = (e) => {
     ctx.currentAudio.pause();
@@ -29,12 +31,39 @@ const Preview = function (props) {
     );
   };
 
+  const rightScrollhandler = () => {
+    let maxWidth =
+      scrollbar.current.scrollWidth - scrollbar.current.clientWidth;
+    if (currentScrollPosition >= maxWidth) {
+      let newWidth = 0;
+      setCurrentScrollPosition(newWidth);
+      scrollbar.current.scrollLeft = newWidth;
+    } else {
+      let newWidth = currentScrollPosition + 120;
+      setCurrentScrollPosition(newWidth);
+      scrollbar.current.scrollLeft = newWidth;
+    }
+  };
+
+  const leftScrollHandler = () => {
+    if (currentScrollPosition <= 0) {
+      let newWidth =
+        scrollbar.current.scrollWidth - scrollbar.current.clientWidth;
+      setCurrentScrollPosition(newWidth);
+      scrollbar.current.scrollLeft = newWidth;
+    } else {
+      let newWidth = currentScrollPosition - 120;
+      setCurrentScrollPosition(newWidth);
+      scrollbar.current.scrollLeft = newWidth;
+    }
+  };
+
   return (
     <div className={classes.container}>
-      <button className={classes.left}>
+      <button className={classes.left} onClick={leftScrollHandler}>
         <FontAwesomeIcon icon={faAnglesLeft} className={classes.icon} />
       </button>
-      <div className={classes.imgs}>
+      <div className={classes.imgs} ref={scrollbar}>
         <img
           src={deepHous}
           className={classes.img}
@@ -108,7 +137,7 @@ const Preview = function (props) {
           onClick={playlistHandler}
         />
       </div>
-      <button className={classes.right}>
+      <button className={classes.right} onClick={rightScrollhandler}>
         <FontAwesomeIcon icon={faAnglesRight} className={classes.icon} />
       </button>
     </div>
