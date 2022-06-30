@@ -27,11 +27,14 @@ const List = function (props) {
   });
 
   return (
-    <div className={classes.container}>
+    <div className={classes.grid}>
+      {" "}
       <div className={classes.title}>
         <span>{currentListSongs[0].playlist}</span>
       </div>
-      <ul className={classes.list}>{songsList}</ul>
+      <div className={classes.container}>
+        <ul className={classes.list}>{songsList}</ul>
+      </div>
     </div>
   );
 };

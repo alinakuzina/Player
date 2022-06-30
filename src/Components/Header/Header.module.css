@@ -1,9 +1,11 @@
 .container {
+  grid-area: 1 / 1 / 2 / 7;
   display: grid;
   grid-template-columns: 1fr 5fr;
   justify-content: space-between;
   align-items: center;
-  grid-area: 1 / 1 / 2 / 7;
+  height: 100%;
+  width: 100vw;
 }
 
 .logo {

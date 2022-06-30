@@ -88,65 +88,67 @@ const Player = function (props) {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.player}>
-        {/* <!-- Song --> */}
-        <div className={classes.imgContainer}>
-          <img src={imgSrc} alt="Album Art" className={classes.img} />
-        </div>
-        <div className={classes.text}>
-          <h2 className={classes.title}>{title}</h2>
-          <h3 className={classes.artist}>{artist}</h3>
-        </div>
-
-        <audio
-          src={musicSrc}
-          className={classes.audio}
-          ref={audioPlayer}
-          onLoadedMetadata={onLoadedMetadata}
-        ></audio>
-        {/* <!-- Progress --> */}
-        <div
-          className={classes.progress}
-          onClick={clickProgress}
-          ref={progressRef}
-        >
-          <div
-            className={classes.progressLine}
-            style={{ width: progress }}
-          ></div>
-          <div className={classes.durationContainer}>
-            <span className={classes.current}>{currentTime}</span>
-            <span className={classes.duration}>{duration}</span>
+    <div className={classes.grid}>
+      <div className={classes.container}>
+        <div className={classes.player}>
+          {/* <!-- Song --> */}
+          <div className={classes.imgContainer}>
+            <img src={imgSrc} alt="Album Art" className={classes.img} />
           </div>
-        </div>
-        {/* <!-- Controls --> */}
-        <div className={classes.controls}>
-          <FontAwesomeIcon
-            icon={faBackwardStep}
-            className={classes.icon}
-            onClick={prevSongHandler}
-          />
-          {!ctx.isPlaying && (
-            <FontAwesomeIcon
-              icon={faPlay}
-              className={classes.iconMain}
-              onClick={playHandler}
-            />
-          )}
-          {ctx.isPlaying && (
-            <FontAwesomeIcon
-              icon={faPause}
-              className={classes.iconMain}
-              onClick={pauseHandler}
-            />
-          )}
+          <div className={classes.text}>
+            <h2 className={classes.title}>{title}</h2>
+            <h3 className={classes.artist}>{artist}</h3>
+          </div>
 
-          <FontAwesomeIcon
-            icon={faForwardStep}
-            className={classes.icon}
-            onClick={nextSongHandler}
-          />
+          <audio
+            src={musicSrc}
+            className={classes.audio}
+            ref={audioPlayer}
+            onLoadedMetadata={onLoadedMetadata}
+          ></audio>
+          {/* <!-- Progress --> */}
+          <div
+            className={classes.progress}
+            onClick={clickProgress}
+            ref={progressRef}
+          >
+            <div
+              className={classes.progressLine}
+              style={{ width: progress }}
+            ></div>
+            <div className={classes.durationContainer}>
+              <span className={classes.current}>{currentTime}</span>
+              <span className={classes.duration}>{duration}</span>
+            </div>
+          </div>
+          {/* <!-- Controls --> */}
+          <div className={classes.controls}>
+            <FontAwesomeIcon
+              icon={faBackwardStep}
+              className={classes.icon}
+              onClick={prevSongHandler}
+            />
+            {!ctx.isPlaying && (
+              <FontAwesomeIcon
+                icon={faPlay}
+                className={classes.iconMain}
+                onClick={playHandler}
+              />
+            )}
+            {ctx.isPlaying && (
+              <FontAwesomeIcon
+                icon={faPause}
+                className={classes.iconMain}
+                onClick={pauseHandler}
+              />
+            )}
+
+            <FontAwesomeIcon
+              icon={faForwardStep}
+              className={classes.icon}
+              onClick={nextSongHandler}
+            />
+          </div>
         </div>
       </div>
     </div>

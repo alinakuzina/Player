@@ -7,12 +7,15 @@ const ListItem = (props) => {
   const ctx = useContext(SongsContext);
   const scrollEl = useRef();
   const notScrollEl = useRef();
-  const [active, setAcrive] = useState();
+  //   const [active, setAcrive] = useState();
 
   let rufOfEl = ctx.currnetSongIndex === props.id ? scrollEl : notScrollEl;
 
   if (scrollEl.current) {
-    scrollEl.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollEl.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }
 
   return (

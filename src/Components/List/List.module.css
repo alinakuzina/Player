@@ -1,19 +1,28 @@
+.grid {
+  grid-area: 3 / 1 / 7 / 4;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .container {
-  grid-area: 3 / 1 / 6 / 4;
-  height: 80%;
-  width: 98%;
-  overflow: scroll;
+  height: 70%;
+  width: 90%;
   border: 1px solid #f2f3fa;
-  margin: 2rem;
   border-radius: 20px;
-  padding: 1rem;
+  padding: 0.5rem;
+  overflow: scroll;
 }
 
 .title {
+  margin-top: 0.5rem;
   color: #26272e;
   font-size: 1rem;
-  position: fixed;
-  margin-top: -3rem;
 }
 
 .list {
@@ -23,18 +32,8 @@
   padding: 0;
 }
 
-@media only screen and (max-height: 45em) {
-  .container {
-    height: 70%;
-  }
-}
-
-@media only screen and (max-height: 34.6em) {
-  .container {
-    height: 65%;
-  }
-  .title {
-    color: #26272e;
-    font-size: 1.2rem;
+@media only screen and (max-width: 37.75em) {
+  .grid {
+    grid-area: 4 / 1 / 7 / 7;
   }
 }
