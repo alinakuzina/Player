@@ -39,6 +39,7 @@
 }
 
 .text {
+  width: 80%;
   display: flex;
   gap: 0.2rem;
   flex-direction: column;
@@ -48,10 +49,12 @@
 .title {
   margin: 0;
   margin-top: 0.1rem;
+  font-weight: 600;
 }
 
 .artist {
   margin: 0;
+  font-weight: 200;
 }
 
 /* Progress bar */

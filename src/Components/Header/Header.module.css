@@ -11,3 +11,9 @@
 .logo {
   width: 7rem;
 }
+
+@media only screen and (max-width: 37.75em) {
+  .logo {
+    width: 5.5rem;
+  }
+}
