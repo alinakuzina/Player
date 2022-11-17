@@ -16,7 +16,8 @@
   border: 1px solid #f2f3fa;
   border-radius: 20px;
   padding: 0.5rem;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .title {
